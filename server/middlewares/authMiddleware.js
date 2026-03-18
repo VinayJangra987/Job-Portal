@@ -1,6 +1,9 @@
 import jwt from "jsonwebtoken";
 
 import Company from "../models/Company.js";
+import { ClerkExpressRequireAuth } from '@clerk/clerk-sdk-node'
+
+export const protectUser = ClerkExpressRequireAuth();
 
 export const protectComapny = async (req, res, next) => {
     const token = req.headers.token;

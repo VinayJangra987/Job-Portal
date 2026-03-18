@@ -13,7 +13,7 @@ import companyRoutes from "./routes/companyRoutes.js"
 import connectCloudinary from "./config/cloudinary.js";
 import jobRoutes from "./routes/jobRoutes.js"
 import userRoutes from "./routes/userRoutes.js"
-import {clerkMiddleware} from "@clerk/express"
+// import {clerkMiddleware} from "@clerk/express"
 
 // Initialize the app
 const app = express();
@@ -28,7 +28,7 @@ await connectDB();
 // Middlewares
 app.use(cors());
 app.use(express.json());
-app.use(clerkMiddleware());
+// app.use(clerkMiddleware());
 
 // Routes
 app.get("/", (req, res) => {
@@ -51,6 +51,11 @@ Sentry.setupExpressErrorHandler(app);
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
+
+console.log("CLOUD NAME:", process.env.CLOUDINARY_CLOUD_NAME);
+console.log("API KEY:", process.env.CLOUDINARY_API_KEY);
+console.log("API SECRET:", process.env.CLOUDINARY_API_SECRET);
+console.log("JWT SECRET:", process.env.JWT_SECRET);
 
 // Handle unhandled promise rejections and exceptions
 process.on("unhandledRejection", (err) => {
